@@ -11,6 +11,127 @@
   align-items: center;
 }
 
+.board-container {
+  position: relative;
+}
+
+.snake {
+  position: absolute;
+  background: url("./snake.png") repeat-y;
+  background-size: 100% 100%;
+  background-position: center;
+  z-index: 15;
+}
+
+.snake-1 {
+  top: 18px;
+  left: 3px;
+  height: 219px;
+  width: 240px;
+  transform: rotate(90deg);
+}
+
+.snake-2 {
+  top: 139px;
+  left: 181px;
+  height: 156px;
+  width: 347px;
+}
+
+.snake-3 {
+  top: 356px;
+  left: 284px;
+  height: 217px;
+  width: 226px;
+  transform: rotate(44deg);
+}
+
+.snake-4 {
+  top: 277px;
+  left: 110px;
+  height: 123px;
+  width: 156px;
+  transform: rotate(75deg);
+}
+
+.snake-5 {
+  top: 391px;
+  left: 331px;
+  height: 219px;
+  width: 240px;
+  transform: rotate(-5deg);
+}
+
+.snake-6 {
+  top: 454px;
+  left: 165px;
+  height: 165px;
+  width: 110px;
+  transform: rotate(69deg);
+}
+
+.ladder {
+  position: absolute;
+  background: url("./ladder.png") repeat-y;
+  background-position: center;
+}
+
+.ladder-1 {
+  top: 439px;
+  left: 66px;
+  height: 180px;
+  width: 47px;
+  transform: rotate(46deg);
+}
+
+.ladder-2 {
+  top: 500px;
+  left: 313px;
+  height: 130px;
+  width: 47px;
+  transform: rotate(62deg);
+}
+
+.ladder-3 {
+  top: 343px;
+  left: 32px;
+  height: 130px;
+  width: 47px;
+  transform: rotate(32deg);
+}
+
+.ladder-4 {
+  top: 63px;
+  left: 385px;
+  height: 433px;
+  width: 47px;
+  transform: rotate(-34deg);
+}
+
+.ladder-5 {
+  top: 265px;
+  left: 194px;
+  height: 154px;
+  width: 47px;
+  transform: rotate(-46deg);
+}
+
+.ladder-6 {
+  top: 104px;
+  left: 472px;
+  height: 121px;
+  width: 47px;
+  transform: rotate(27deg);
+}
+
+.ladder-7 {
+  top: 22px;
+  left: 103px;
+  height: 130px;
+  width: 47px;
+  transform: rotate(-24deg);
+}
+
 .result-container {
   padding: 15px;
   font-size: 30px;
@@ -57,6 +178,10 @@
   height: 20px;
   font-size: 13px;
   text-align: center;
+  z-index: 5;
+  color: #363636;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .row .square:last-child {
@@ -65,6 +190,25 @@
 
 .row:last-child .square {
   border-bottom: 2px solid black;
+}
+
+.player-x,
+.player-y {
+  border: 3px solid rgb(129, 129, 129);
+  z-index: 10;
+  width: 30px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+}
+
+.player-x {
+  background-color: blue;
+}
+
+.player-y {
+  background-color: red;
 }
 
 .unselectable {

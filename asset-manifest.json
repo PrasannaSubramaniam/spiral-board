@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/spiral-board/static/css/main.747bf157.chunk.css",
-    "main.js": "/spiral-board/static/js/main.43ccdf3a.chunk.js",
-    "main.js.map": "/spiral-board/static/js/main.43ccdf3a.chunk.js.map",
+    "main.css": "/spiral-board/static/css/main.aff4eda8.chunk.css",
+    "main.js": "/spiral-board/static/js/main.69f81408.chunk.js",
+    "main.js.map": "/spiral-board/static/js/main.69f81408.chunk.js.map",
     "runtime-main.js": "/spiral-board/static/js/runtime-main.50a508e6.js",
     "runtime-main.js.map": "/spiral-board/static/js/runtime-main.50a508e6.js.map",
     "static/js/2.a990e1a6.chunk.js": "/spiral-board/static/js/2.a990e1a6.chunk.js",
@@ -10,13 +10,14 @@
     "static/js/3.d4cacbc6.chunk.js": "/spiral-board/static/js/3.d4cacbc6.chunk.js",
     "static/js/3.d4cacbc6.chunk.js.map": "/spiral-board/static/js/3.d4cacbc6.chunk.js.map",
     "index.html": "/spiral-board/index.html",
-    "static/css/main.747bf157.chunk.css.map": "/spiral-board/static/css/main.747bf157.chunk.css.map",
-    "static/js/2.a990e1a6.chunk.js.LICENSE.txt": "/spiral-board/static/js/2.a990e1a6.chunk.js.LICENSE.txt"
+    "static/css/main.aff4eda8.chunk.css.map": "/spiral-board/static/css/main.aff4eda8.chunk.css.map",
+    "static/js/2.a990e1a6.chunk.js.LICENSE.txt": "/spiral-board/static/js/2.a990e1a6.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/spiral-board/static/media/snake.d8092119.png"
   },
   "entrypoints": [
     "static/js/runtime-main.50a508e6.js",
     "static/js/2.a990e1a6.chunk.js",
-    "static/css/main.747bf157.chunk.css",
-    "static/js/main.43ccdf3a.chunk.js"
+    "static/css/main.aff4eda8.chunk.css",
+    "static/js/main.69f81408.chunk.js"
   ]
 }

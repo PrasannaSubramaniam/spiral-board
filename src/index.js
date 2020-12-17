@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App rowsCount={5} />
+    <App rowsCount={10} />
   </React.StrictMode>,
   document.getElementById("root")
 );

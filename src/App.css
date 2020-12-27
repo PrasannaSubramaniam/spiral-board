@@ -20,7 +20,7 @@
   background: url("./snake.png") repeat-y;
   background-size: 100% 100%;
   background-position: center;
-  z-index: 15;
+  z-index: 3;
 }
 
 .snake-1 {
@@ -177,10 +177,7 @@
 
 .square span {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  border-top: 1px solid #555555;
-  border-right: 1px solid #555555;
+
   width: 20px;
   height: 20px;
   font-size: 13px;
@@ -188,8 +185,27 @@
   z-index: 5;
   color: #363636;
   background-color: white;
-  border-top-right-radius: 50%;
   font-weight: bold;
+}
+
+.square:nth-child(odd) span {
+  bottom: 0;
+  left: 0;
+
+  border-top: 1px solid #555555;
+  border-right: 1px solid #555555;
+
+  border-top-right-radius: 50%;
+}
+
+.square:nth-child(even) span {
+  top: 0;
+  right: 0;
+
+  border-left: 1px solid #555555;
+  border-bottom: 1px solid #555555;
+
+  border-bottom-left-radius: 50%;
 }
 
 .row:nth-child(odd) .square:nth-child(even) {
@@ -198,7 +214,7 @@
 
 .row:nth-child(odd) .square:nth-child(odd) span,
 .row:nth-child(even) .square:nth-child(even) span {
-  background-color: #a5a5a5;
+  background-color: #cccccc;
   color: #ffffff;
 }
 

@@ -139,6 +139,13 @@
 
 .result {
   margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result span {
+  font-size: 15px;
 }
 
 .button {
@@ -209,7 +216,6 @@
 
 .player-x,
 .player-y {
-  border: 3px solid rgb(129, 129, 129);
   z-index: 10;
   width: 30px;
   height: 40px;
@@ -220,10 +226,12 @@
 
 .player-x {
   background-color: blue;
+  border: 2px solid red;
 }
 
 .player-y {
   background-color: red;
+  border: 2px solid blue;
 }
 
 .unselectable {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const App = (props) => {
@@ -8,6 +8,28 @@ const App = (props) => {
   const [xDiceNumber, setxDiceNumber] = useState(0);
   const [yDiceNumber, setyDiceNumber] = useState(0);
   const [result, setresult] = useState(null);
+  const [key, setKey] = useState(null);
+  const handleKeyDown = (event) => {
+    setKey(event.keyCode);
+  };
+
+  useEffect(() => {
+    if (key === 88) {
+      rolldice("X");
+    }
+    if (key === 89) {
+      rolldice("Y");
+    }
+  }, [key]);
+
+  React.useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   const checkLS = (s) => {
     switch (s) {
       case 1:
@@ -40,8 +62,8 @@ const App = (props) => {
         return s;
     }
   };
-  const rolldice = () => {
-    // let { currentPlayer, score, xDiceNumber, yDiceNumber } = this.state;
+  const rolldice = (player) => {
+    if (player != currentPlayer) return;
     let diceNumber = Math.ceil(Math.random() * 6);
     let s = { ...score };
     s[currentPlayer] = score[currentPlayer] + diceNumber;
@@ -55,29 +77,11 @@ const App = (props) => {
       s[currentPlayer] -= diceNumber;
       setcurrentPlayer(currentPlayer === "X" ? "Y" : "X");
       setscore(s);
-      // this.setState({
-      //   xDiceNumber,
-      //   yDiceNumber,
-      //   currentPlayer: currentPlayer === "X" ? "Y" : "X",
-      //   score,
-      // });
     } else if (s[currentPlayer] === totalCount) {
       setscore(s);
       setresult(`Player ${currentPlayer} WON`);
-      // this.setState({
-      //   xDiceNumber,
-      //   yDiceNumber,
-      //   score,
-      //   result: `Player ${currentPlayer} WON`,
-      // });
     } else {
       s[currentPlayer] = checkLS(s[currentPlayer]);
-      // this.setState({
-      //   xDiceNumber,
-      //   yDiceNumber,
-      //   currentPlayer: currentPlayer === "X" ? "Y" : "X",
-      //   score,
-      // });
       setscore(s);
       setcurrentPlayer(currentPlayer === "X" ? "Y" : "X");
     }
@@ -159,9 +163,15 @@ const App = (props) => {
           result
         ) : (
           <>
-            <div className="result">Player {currentPlayer}'s Turn</div>
+            <div className="result">
+              Player {currentPlayer}'s Turn
+              <span>Click Roll Dice or press {currentPlayer}</span>
+            </div>
             <div className="dice-number">X : {xDiceNumber}</div>
-            <div className="roll-button button" onClick={rolldice}>
+            <div
+              className="roll-button button"
+              onClick={() => rolldice(currentPlayer)}
+            >
               Roll Dice
             </div>
             <div className="dice-number">Y : {yDiceNumber}</div>

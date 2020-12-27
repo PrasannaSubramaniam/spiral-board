@@ -181,7 +181,22 @@
   z-index: 5;
   color: #363636;
   background-color: white;
-  border-radius: 50%;
+  border-top-right-radius: 50%;
+  font-weight: bold;
+}
+
+.row:nth-child(odd) .square:nth-child(even) {
+  background-color: #cccccc;
+}
+
+.row:nth-child(odd) .square:nth-child(odd) span,
+.row:nth-child(even) .square:nth-child(even) span {
+  background-color: #a5a5a5;
+  color: #ffffff;
+}
+
+.row:nth-child(even) .square:nth-child(odd) {
+  background-color: #cccccc;
 }
 
 .row .square:last-child {

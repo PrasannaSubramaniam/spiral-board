@@ -1,24 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.totalCount = this.props.rowsCount * this.props.rowsCount;
-    this.initialState = {
-      currentPlayer: "X",
-      score: {
-        X: 0,
-        Y: 0,
-      },
-      xDiceNumber: 0,
-      yDiceNumber: 0,
-      result: null,
-    };
-    this.state = JSON.parse(JSON.stringify(this.initialState));
-  }
-  checkLS = (score) => {
-    switch (score) {
+const App = (props) => {
+  const totalCount = props.rowsCount * props.rowsCount;
+  const [currentPlayer, setcurrentPlayer] = useState("X");
+  const [score, setscore] = useState({ X: 0, Y: 0 });
+  const [xDiceNumber, setxDiceNumber] = useState(0);
+  const [yDiceNumber, setyDiceNumber] = useState(0);
+  const [result, setresult] = useState(null);
+  const checkLS = (s) => {
+    switch (s) {
       case 1:
         return 23;
       case 5:
@@ -46,49 +37,59 @@ class App extends React.Component {
       case 97:
         return 61;
       default:
-        return score;
+        return s;
     }
   };
-  rolldice = () => {
-    let { currentPlayer, score, xDiceNumber, yDiceNumber } = this.state;
+  const rolldice = () => {
+    // let { currentPlayer, score, xDiceNumber, yDiceNumber } = this.state;
     let diceNumber = Math.ceil(Math.random() * 6);
-    score[currentPlayer] += diceNumber;
+    let s = { ...score };
+    s[currentPlayer] = score[currentPlayer] + diceNumber;
     if (currentPlayer === "X") {
-      xDiceNumber = diceNumber;
+      setxDiceNumber(diceNumber);
     }
     if (currentPlayer === "Y") {
-      yDiceNumber = diceNumber;
+      setyDiceNumber(diceNumber);
     }
-    if (score[currentPlayer] > this.totalCount) {
-      score[currentPlayer] -= diceNumber;
-      this.setState({
-        xDiceNumber,
-        yDiceNumber,
-        currentPlayer: currentPlayer === "X" ? "Y" : "X",
-        score,
-      });
-    } else if (score[currentPlayer] === this.totalCount) {
-      this.setState({
-        xDiceNumber,
-        yDiceNumber,
-        score,
-        result: `Player ${currentPlayer} WON`,
-      });
+    if (s[currentPlayer] > totalCount) {
+      s[currentPlayer] -= diceNumber;
+      setcurrentPlayer(currentPlayer === "X" ? "Y" : "X");
+      setscore(s);
+      // this.setState({
+      //   xDiceNumber,
+      //   yDiceNumber,
+      //   currentPlayer: currentPlayer === "X" ? "Y" : "X",
+      //   score,
+      // });
+    } else if (s[currentPlayer] === totalCount) {
+      setscore(s);
+      setresult(`Player ${currentPlayer} WON`);
+      // this.setState({
+      //   xDiceNumber,
+      //   yDiceNumber,
+      //   score,
+      //   result: `Player ${currentPlayer} WON`,
+      // });
     } else {
-      score[currentPlayer] = this.checkLS(score[currentPlayer]);
-      this.setState({
-        xDiceNumber,
-        yDiceNumber,
-        currentPlayer: currentPlayer === "X" ? "Y" : "X",
-        score,
-      });
+      s[currentPlayer] = checkLS(s[currentPlayer]);
+      // this.setState({
+      //   xDiceNumber,
+      //   yDiceNumber,
+      //   currentPlayer: currentPlayer === "X" ? "Y" : "X",
+      //   score,
+      // });
+      setscore(s);
+      setcurrentPlayer(currentPlayer === "X" ? "Y" : "X");
     }
   };
-  resetBoard = () => {
-    this.setState(JSON.parse(JSON.stringify(this.initialState)));
+  const resetBoard = () => {
+    setcurrentPlayer("X");
+    setscore({ X: 0, Y: 0 });
+    setxDiceNumber(0);
+    setyDiceNumber(0);
+    setresult(null);
   };
-  renderSquare = (squareIndex) => {
-    let { score } = this.state;
+  const renderSquare = (squareIndex) => {
     return (
       <div className="square">
         <span>{squareIndex}</span>
@@ -97,7 +98,7 @@ class App extends React.Component {
       </div>
     );
   };
-  renderRow = (rowIndex, rowsCount) => {
+  const renderRow = (rowIndex, rowsCount) => {
     let renderedSquares = [];
     if (rowIndex % 2 == 0) {
       for (
@@ -105,7 +106,7 @@ class App extends React.Component {
         squareIndex > rowsCount * rowIndex - rowsCount;
         squareIndex--
       ) {
-        renderedSquares.push(this.renderSquare(squareIndex));
+        renderedSquares.push(renderSquare(squareIndex));
       }
     } else {
       for (
@@ -113,19 +114,19 @@ class App extends React.Component {
         squareIndex < rowsCount * rowIndex + 1;
         squareIndex++
       ) {
-        renderedSquares.push(this.renderSquare(squareIndex));
+        renderedSquares.push(renderSquare(squareIndex));
       }
     }
     return <div className="row">{renderedSquares}</div>;
   };
-  renderBoard = (rowsCount) => {
+  const renderBoard = (rowsCount) => {
     let renderedRows = [];
     for (let rowIndex = rowsCount; rowIndex > 0; rowIndex--) {
-      renderedRows.push(this.renderRow(rowIndex, rowsCount));
+      renderedRows.push(renderRow(rowIndex, rowsCount));
     }
     return <div className="board">{renderedRows}</div>;
   };
-  renderLadders = () => {
+  const renderLadders = () => {
     return (
       <div className="ladders">
         <div class="ladder-1 ladder"></div>
@@ -139,7 +140,7 @@ class App extends React.Component {
       </div>
     );
   };
-  renderSnakes = () => {
+  const renderSnakes = () => {
     return (
       <div className="snakes">
         <div class="snake-1 snake"></div>
@@ -151,40 +152,36 @@ class App extends React.Component {
       </div>
     );
   };
-  render() {
-    return (
-      <div className="app-container unselectable">
-        <div className="result-container">
-          {this.state.result ? (
-            this.state.result
-          ) : (
-            <>
-              <div className="result">
-                Player {this.state.currentPlayer}'s Turn
-              </div>
-              <div className="dice-number">X : {this.state.xDiceNumber}</div>
-              <div className="roll-button button" onClick={this.rolldice}>
-                Roll Dice
-              </div>
-              <div className="dice-number">Y : {this.state.yDiceNumber}</div>
-            </>
-          )}
-        </div>
-        <div className="board-container">
-          {this.renderBoard(this.props.rowsCount)}
-          {this.renderLadders()}
-          {this.renderSnakes()}
-        </div>
-        {this.state.result ? (
-          <div className="reset-button button" onClick={this.resetBoard}>
-            Reset
-          </div>
+  return (
+    <div className="app-container unselectable">
+      <div className="result-container">
+        {result ? (
+          result
         ) : (
-          ""
+          <>
+            <div className="result">Player {currentPlayer}'s Turn</div>
+            <div className="dice-number">X : {xDiceNumber}</div>
+            <div className="roll-button button" onClick={rolldice}>
+              Roll Dice
+            </div>
+            <div className="dice-number">Y : {yDiceNumber}</div>
+          </>
         )}
       </div>
-    );
-  }
-}
+      <div className="board-container">
+        {renderBoard(props.rowsCount)}
+        {renderLadders()}
+        {renderSnakes()}
+      </div>
+      {result ? (
+        <div className="reset-button button" onClick={resetBoard}>
+          Reset
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+};
 
 export default App;

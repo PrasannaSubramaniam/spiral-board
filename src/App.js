@@ -63,6 +63,7 @@ const App = (props) => {
     }
   };
   const rolldice = (player) => {
+    if (result) return;
     if (player != currentPlayer) return;
     let diceNumber = Math.ceil(Math.random() * 6);
     let s = { ...score };

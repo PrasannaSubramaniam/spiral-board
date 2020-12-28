@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/spiral-board/static/css/main.04774015.chunk.css",
-    "main.js": "/spiral-board/static/js/main.04377426.chunk.js",
-    "main.js.map": "/spiral-board/static/js/main.04377426.chunk.js.map",
+    "main.js": "/spiral-board/static/js/main.68e40f7e.chunk.js",
+    "main.js.map": "/spiral-board/static/js/main.68e40f7e.chunk.js.map",
     "runtime-main.js": "/spiral-board/static/js/runtime-main.81b70ac5.js",
     "runtime-main.js.map": "/spiral-board/static/js/runtime-main.81b70ac5.js.map",
     "static/js/2.8cc0688f.chunk.js": "/spiral-board/static/js/2.8cc0688f.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.81b70ac5.js",
     "static/js/2.8cc0688f.chunk.js",
     "static/css/main.04774015.chunk.css",
-    "static/js/main.04377426.chunk.js"
+    "static/js/main.68e40f7e.chunk.js"
   ]
 }
